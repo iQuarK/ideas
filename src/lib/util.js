@@ -6,10 +6,12 @@ export const store = idea => {
     const ideas = JSON.parse(localStorage.getItem('ideas'));
     const mapped = _map(ideas, item => _omit(item, ['new']));
     const data = [...mapped, _omit(idea, ['new'])];
-    localStorage.setItem('ideas', JSON.stringify(data));
+    save(data);
 };
 
 export const load = () => JSON.parse(localStorage.getItem('ideas')) || [];
+
+const save = ideas => localStorage.setItem('ideas', JSON.stringify(ideas));
 
 export const update = (id, field, value) => {
     let ideas = load();
@@ -18,6 +20,13 @@ export const update = (id, field, value) => {
     });
     if (index > -1) {
         ideas[index][field] = value;
-        localStorage.setItem('ideas', JSON.stringify(ideas));
+        save(ideas);
     }
+};
+
+export const remove = id => {
+    const ideas = load();
+    const filtered = ideas.filter(item => item.id !== id);
+    save(filtered);
+    return filtered;
 };

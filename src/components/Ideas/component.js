@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import _sortBy from 'lodash/sortBy';
-import { store } from '../../lib/util';
+import { store, remove } from '../../lib/util';
 
 import Idea from '../Idea';
 import './styles.css';
@@ -25,7 +25,8 @@ class Ideas extends Component {
     }
 
     deleteIdea = id => {
-        this.setState({ ideas: this.state.ideas.filter(item => item.id !== id) });
+        const ideas = remove(id);
+        this.setState({ ideas });
     }
 
     sortBy = elem => this.setState({ sortBy: elem.target.value });
