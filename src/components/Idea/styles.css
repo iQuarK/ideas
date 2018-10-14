@@ -50,6 +50,63 @@
     margin-top: 5px;
 }
 
+.idea .info {
+    font-size: 10px;
+    color: lightseagreen;
+    position: absolute;
+    height: 160px;
+    width: 150px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    text-align: center;
+
+    -webkit-animation: fadeinout 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadeinout 2s; /* Firefox < 16 */
+        -ms-animation: fadeinout 2s; /* Internet Explorer */
+         -o-animation: fadeinout 2s; /* Opera < 12.1 */
+            animation: fadeinout 2s;
+}
+
+@keyframes fadeinout {
+    0%   {opacity: 0;}
+    25%  {opacity: 1;}
+    50%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadeinout {
+    0%   {opacity: 0;}
+    25%  {opacity: 1;}
+    50%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeinout {
+    0%   {opacity: 0;}
+    25%  {opacity: 1;}
+    50%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeinout {
+    0%   {opacity: 0;}
+    25%  {opacity: 1;}
+    50%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadeinout {
+    0%   {opacity: 0;}
+    25%  {opacity: 1;}
+    50%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+
 .form-component {
     border: thin solid lightgray;
 }

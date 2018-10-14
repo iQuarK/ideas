@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import _sortBy from 'lodash/sortBy';
+import { store } from '../../lib/util';
 
 import Idea from '../Idea';
 import './styles.css';
@@ -17,7 +18,10 @@ class Ideas extends Component {
 
     createIdea = () => {
         const id = (+ new Date()) + '';
-        this.setState({ ideas: [...this.state.ideas, {id, title: 'new idea', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim', created_date: new Date(), new: true}]});
+        let idea = {id, title: 'Zzzz...', body: 'This idea is sleeping, waiting for something great!', created_date: new Date(), new: true};
+        store(idea)
+        const ideas = [...this.state.ideas, idea];
+        this.setState({ ideas });
     }
 
     deleteIdea = id => {
@@ -28,7 +32,13 @@ class Ideas extends Component {
 
     render () {
         const { ideas, sortBy } = this.state;
-        let sortedIdeas = _sortBy(ideas, sortBy);
+
+        const sortedIdeas = _sortBy(ideas, item => {
+            if (sortBy === 'title') {
+                return item[sortBy].toLowerCase();
+            }
+            return item[sortBy];
+        });
 
         return (
             <div className='ideas'>
@@ -41,10 +51,7 @@ class Ideas extends Component {
                 {
                     sortedIdeas.map((item, idx) => <Idea {...item} key={item.id} deleteIdea={this.deleteIdea} createdDate={new Date(item['created_date'])} />)
                 }
-                <div className='idea new' onClick={this.createIdea}>
-                    <div className='big'>NEW</div>
-                    <div>idea</div>
-                </div>
+                <div className='idea new' onClick={this.createIdea}>+</div>
             </div>);
     }
 }

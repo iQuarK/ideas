@@ -7,16 +7,15 @@
 
 .new {
     font-weight: bold;
-    font-size: 24px;
-    border: thin dotted black;
+    font-size: 70px;
+    color: lightgray;
+    border: thin dashed lightgray;
+    border-radius: 15px;
 }
   
 .new:hover {
     background: lightgray;
+    color: white;
     cursor: pointer;
-}
-  
-.big {
-    font-size: 60px;
 }
   

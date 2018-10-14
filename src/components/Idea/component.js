@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { update } from '../../lib/util';
 import './styles.css';
 
 const MAX_BODY = 140;
@@ -12,7 +13,8 @@ class Idea extends Component {
             editingTitle: false,
             editingBody: false,
             title: props.title,
-            body: props.body
+            body: props.body,
+            saved: false
         };
         this.inputTitle = null;
         this.inputBody = null;
@@ -36,9 +38,15 @@ class Idea extends Component {
         }
     }));
 
-    updateTitle = () => (this.setState({ editingTitle: false }));
+    updateTitle = () => {
+        update(this.props.id, 'title', this.inputTitle.value);
+        this.setState({ editingTitle: false }, () => this.notificationUpdate())
+    }
 
-    updateBody = () => (this.setState({ editingBody: false }));
+    updateBody = () => {  
+        update(this.props.id, 'body', this.inputBody.value);
+        this.setState({ editingBody: false }, () => this.notificationUpdate());
+    }
 
     changeTitle = elem =>(this.setState({ title: elem.target.value }));
 
@@ -46,8 +54,14 @@ class Idea extends Component {
 
     closeIdea = () => this.props.deleteIdea(this.props.id);
 
+    notificationUpdate = () => {
+        this.setState({ saved: true }, () =>
+            setTimeout(() => this.setState({ saved: false }), 2000)
+        );
+    }
+
     render() {
-        const { editingTitle, editingBody, title, body } = this.state;
+        const { editingTitle, editingBody, title, body, saved } = this.state;
         const { createdDate } = this.props;
 
         return (
@@ -74,7 +88,10 @@ class Idea extends Component {
                 { editingBody && (MAX_BODY - body.length < THRESHOLD) &&
                     <div className="counter">{body.length} of {MAX_BODY}</div>
                 }
-                <div className="date">{createdDate.toLocaleString('en-GB', { timeZone: 'UTC' })}</div>
+                <div className="date">
+                    {createdDate.toLocaleString('en-GB', { timeZone: 'UTC' })}
+                </div>
+                { saved && <div className="info">Saved successfully</div> }
             </div>
         );
     }
