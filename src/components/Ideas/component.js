@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import _sortBy from 'lodash/sortBy';
-import { store, remove } from '../../lib/util';
+import { store, remove, create, updateAll, fetchAll, save } from '../../lib/util';
 
 import Idea from '../Idea';
 import './styles.css';
@@ -16,12 +16,24 @@ class Ideas extends Component {
         this.deleteIdea = this.deleteIdea.bind(this)
     }
 
+    synchronize = () => {
+        fetchAll().then(({ data }) => {
+          console.log('data', data);
+          save(data);
+          window.location.reload();
+        });
+    }
+    
     createIdea = () => {
-        const id = (+ new Date()) + '';
-        let idea = {id, title: 'Zzzz...', body: 'This idea is sleeping, waiting for something great!', created_date: new Date(), new: true};
-        store(idea)
-        const ideas = [...this.state.ideas, idea];
-        this.setState({ ideas });
+        create().then( ({ data }) => {
+            data.title = 'Zzzzzz...';
+            data.body = 'This idea is sleeping, waiting for something great!';
+            data.new = true;
+            store(data);
+            updateAll(data.id, 'Zzzzzz...', 'This idea is sleeping, waiting for something great!');
+            const ideas = [...this.state.ideas, data];
+            this.setState({ ideas });
+        });
     }
 
     deleteIdea = id => {
@@ -42,17 +54,21 @@ class Ideas extends Component {
         });
 
         return (
-            <div className='ideas'>
+            <div>
+                <button className="synchronize" onClick={this.synchronize}>Synchronize ideas from server</button>
                 <div className="sort">
                     <select className="form-component" onChange={this.sortBy}>
                         <option value="title">Title</option>
                         <option value="created_date">Date</option>
                     </select>
                 </div>
-                {
-                    sortedIdeas.map((item, idx) => <Idea {...item} key={item.id} deleteIdea={this.deleteIdea} createdDate={new Date(item['created_date'])} />)
-                }
-                <div className='idea new' onClick={this.createIdea}>+</div>
+                <div className='ideas'>
+
+                    {
+                        sortedIdeas.map((item, idx) => <Idea {...item} key={item.id} deleteIdea={this.deleteIdea} createdDate={new Date(item['created_date'])} />)
+                    }
+                    <div className='idea new' onClick={this.createIdea}>+</div>
+                </div>
             </div>);
     }
 }
