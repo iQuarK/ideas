@@ -7,7 +7,7 @@ const component = (title="foo", body="bar") =>
     shallow(<Idea title={title} body={body} />);
 
 
-describe('App', function() {
+describe('Idea', function() {
   test('An Idea should have a title', function() {
     expect(component().find('.title').text()).toBe('foo');
   });
