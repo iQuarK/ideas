@@ -1,0 +1,49 @@
+
+.idea {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+}
+.idea .topbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 20px;
+}
+.idea .close-button {
+    visibility: hidden;
+}
+.idea:hover .close-button {
+    visibility: visible;
+    border-radius: 25px;
+    padding: 5px;
+    line-height: 10px;
+    height: 10px;
+    font-weight: bold;
+    background-color: #FFE4E1;
+    color: white;
+}
+.idea:hover .close-button:hover {
+    cursor: pointer;
+    background-color: #DC143C;
+}
+.idea .title {
+    font-size: 16px;
+    font-weight: bold;
+}
+  
+.idea .body {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.form-component {
+    border: thin solid lightgray;
+}
+
+.form-component.body {
+    height: 70px;
+}

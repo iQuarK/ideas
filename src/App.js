@@ -1,25 +1,68 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+import Idea from './components/Idea';
 import './App.css';
 
 class App extends Component {
   render() {
+    const ideas = [
+      {
+        id: '1',
+        title: 'A great idea',
+        body: 'This is a great idea because it will make a better world'
+      },
+      {
+        id: '2',
+        title: 'A great idea',
+        body: 'This is a great idea because it will make a better world'
+      },
+      {
+        id: '3',
+        title: 'A great idea',
+        body: 'This is a great idea because it will make a better world'
+      },
+      {
+        id: '4',
+        title: 'A great idea',
+        body: 'This is a great idea because it will make a better world'
+      },
+      {
+        id: '5',
+        title: 'A great idea',
+        body: 'This is a great idea because it will make a better world'
+      },
+      {
+        id: '6',
+        title: 'A great idea',
+        body: 'This is a great idea because it will make a better world'
+      },
+      {
+        id: '7',
+        title: 'A great idea',
+        body: 'This is a great idea because it will make a better world'
+      },
+      {
+        id: '8',
+        title: 'A great idea',
+        body: 'This is a great idea because it will make a better world'
+      }
+    ];
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className='App'>
+        <header className='header'>
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Write your own ideas.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header>
+        <main className='ideas'>
+          {
+            ideas.map( (item, idx) => <Idea {...item} key={item.id} />)
+          }
+          <div className='idea new'>
+            <div className='big'>NEW</div>
+            <div>idea</div>
+          </div>
+        </main>
       </div>
     );
   }
