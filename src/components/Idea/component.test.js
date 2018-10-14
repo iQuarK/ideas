@@ -35,5 +35,13 @@ describe('Idea', function() {
         expect(wrapper.state('editingBody')).toBe(false);
         expect(wrapper.state('body')).toBe('this is a body');
       });
+
+      test('when editing body the text is near to 140, shows a counter', () => {
+        const wrapper = component();
+        wrapper.find('.body').simulate('click');
+        expect(wrapper.find('.counter')).toHaveLength(0);
+        wrapper.find('.body').simulate('change', { target: { value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim' } });
+        expect(wrapper.find('.counter').text()).toBe("135 of 140");
+      });
   });
 });

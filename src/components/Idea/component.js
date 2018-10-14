@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
+const MAX_BODY = 140;
+const THRESHOLD = 15;
+
 class Idea extends Component {
     constructor(props) {
         super(props);
@@ -67,6 +70,9 @@ class Idea extends Component {
                         onChange={this.changeBody} value={body}
                         ref={input => this.inputBody = input}/> :
                     <div className="body" onClick={this.editBody}>{body}</div>
+                }
+                { editingBody && (MAX_BODY - body.length < THRESHOLD) &&
+                    <div className="counter">{body.length} of {MAX_BODY}</div>
                 }
                 <div className="date">{createdDate.toLocaleString('en-GB', { timeZone: 'UTC' })}</div>
             </div>
