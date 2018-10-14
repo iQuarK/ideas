@@ -12,25 +12,3 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.ideas {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  padding: 20px;
-}
-
-.new {
-  font-weight: bold;
-  font-size: 24px;
-  border: thin dotted black;
-}
-
-.new:hover {
-  background: lightgray;
-  cursor: pointer;
-}
-
-.big {
-  font-size: 60px;
-}

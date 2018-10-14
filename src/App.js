@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Idea from './components/Idea';
+import Ideas from './components/Ideas';
 import './App.css';
 
 class App extends Component {
@@ -54,15 +54,7 @@ class App extends Component {
             Write your own ideas.
           </p>
         </header>
-        <main className='ideas'>
-          {
-            ideas.map( (item, idx) => <Idea {...item} key={item.id} />)
-          }
-          <div className='idea new'>
-            <div className='big'>NEW</div>
-            <div>idea</div>
-          </div>
-        </main>
+        <Ideas ideas={ideas} />
       </div>
     );
   }

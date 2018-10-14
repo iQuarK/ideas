@@ -15,6 +15,12 @@ class Idea extends Component {
         this.inputBody = null;
     }
 
+    componentDidMount() {
+        if (this.props.new) {
+            this.editTitle();
+        }
+    }
+
     editTitle = () => (this.setState({ editingTitle: true }, () => {
         if (this.inputTitle) {
             this.inputTitle.focus();
@@ -66,7 +72,8 @@ class Idea extends Component {
 Idea.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
-    body: PropTypes.string
+    body: PropTypes.string,
+    new: PropTypes.bool
 };
 
 export default Idea;
