@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 
 import Idea from './component';
 
-const component = (title="foo", body="bar") =>
-    shallow(<Idea title={title} body={body} />);
+const component = (title='foo', body='bar', createdDate='2018-04-24T18:12:00+01:00') =>
+    shallow(<Idea title={title} body={body} createdDate={new Date(createdDate)} />);
 
 
 describe('Idea', function() {

@@ -8,43 +8,51 @@ class App extends Component {
     const ideas = [
       {
         id: '1',
-        title: 'A great idea',
-        body: 'This is a great idea because it will make a better world'
+        title: '1 A great idea',
+        body: 'This is a great idea because it will make a better world',
+        created_date: '2018-04-24T17:12:00+01:00'
       },
       {
         id: '2',
-        title: 'A great idea',
-        body: 'This is a great idea because it will make a better world'
+        title: '2 A great idea',
+        body: 'This is a great idea because it will make a better world',
+        created_date: '2018-04-24T17:13:00+01:00'
       },
       {
         id: '3',
-        title: 'A great idea',
-        body: 'This is a great idea because it will make a better world'
+        title: '3 A great idea',
+        body: 'This is a great idea because it will make a better world',
+        created_date: '2018-04-24T14:12:00+01:00'
       },
       {
         id: '4',
-        title: 'A great idea',
-        body: 'This is a great idea because it will make a better world'
+        title: '4 A great idea',
+        body: 'This is a great idea because it will make a better world',
+        created_date: '2018-04-24T16:12:00+01:00'
       },
       {
         id: '5',
-        title: 'A great idea',
-        body: 'This is a great idea because it will make a better world'
+        title: '5 A great idea',
+        body: 'This is a great idea because it will make a better world',
+        created_date: '2018-04-24T17:32:00+01:00'
       },
       {
         id: '6',
-        title: 'A great idea',
-        body: 'This is a great idea because it will make a better world'
+        title: '6 A great idea',
+        body: 'This is a great idea because it will make a better world',
+        created_date: '2018-04-24T19:12:00+01:00'
       },
       {
         id: '7',
-        title: 'A great idea',
-        body: 'This is a great idea because it will make a better world'
+        title: '7 A great idea',
+        body: 'This is a great idea because it will make a better world',
+        created_date: '2018-04-24T18:12:00+01:00'
       },
       {
         id: '8',
-        title: 'A great idea',
-        body: 'This is a great idea because it will make a better world'
+        title: '8 A great idea',
+        body: 'This is a great idea because it will make a better world',
+        created_date: '2018-04-24T17:12:00+01:00'
       }
     ];
     return (

@@ -6,13 +6,15 @@ import Ideas from './component';
 const ideas = [
     {
       id: '1',
-      title: 'A great idea',
-      body: 'This is a great idea because it will make a better world'
+      title: 'This is an idea',
+      body: 'This is a great idea because it will make a better world',
+      created_date: '2018-04-24T18:11:00+01:00'
     },
     {
       id: '2',
       title: 'A great idea',
-      body: 'This is a great idea because it will make a better world'
+      body: 'This is a great idea because it will make a better world',
+      created_date: '2018-04-24T18:12:00+01:00'
     }
 ];
 
@@ -20,8 +22,8 @@ const component = () =>
     shallow(<Ideas ideas={ideas} />);
 
 describe('Ideas', function() {
-  test('it should have a list of ideas, and the new button', function() {
-    expect(component().find('.ideas').children()).toHaveLength(3);
+  test('it should have a list of ideas, the select and the new button', function() {
+    expect(component().find('.ideas').children()).toHaveLength(4);
   });
 
   test('if the new button is pressed, the number of ideas is increased in 1', function() {
@@ -36,5 +38,16 @@ describe('Ideas', function() {
     expect(wrapper.state('ideas')).toHaveLength(2);
     wrapper.find('Idea').first().prop('deleteIdea')('1');
     expect(wrapper.state('ideas')).toHaveLength(1);
+  });
+
+  test('the list is sorted by title by default', function() {
+    const wrapper = component();
+    expect(wrapper.find('Idea').first().props().title).toBe('A great idea');
+  });
+
+  test('the list can be sorted by date of creation', function() {
+    const wrapper = component();
+    wrapper.setState({ ...wrapper.state(), sortBy: 'created_date' });
+    expect(wrapper.find('Idea').first().props().title).toBe('This is an idea');
   });
 });

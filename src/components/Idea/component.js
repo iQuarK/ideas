@@ -45,6 +45,8 @@ class Idea extends Component {
 
     render() {
         const { editingTitle, editingBody, title, body } = this.state;
+        const { createdDate } = this.props;
+
         return (
             <div className="idea">
                 <div className="topbar">
@@ -66,6 +68,7 @@ class Idea extends Component {
                         ref={input => this.inputBody = input}/> :
                     <div className="body" onClick={this.editBody}>{body}</div>
                 }
+                <div className="date">{createdDate.toLocaleString('en-GB', { timeZone: 'UTC' })}</div>
             </div>
         );
     }
@@ -76,6 +79,7 @@ Idea.propTypes = {
     title: PropTypes.string,
     body: PropTypes.string,
     new: PropTypes.bool,
+    createdDate: PropTypes.object,
     deleteIdea: PropTypes.func
 };
 

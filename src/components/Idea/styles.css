@@ -36,8 +36,13 @@
 }
   
 .idea .body {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
+}
+
+.idea .date {
+    font-size: 10px;
+    margin-top: 5px;
 }
 
 .form-component {
