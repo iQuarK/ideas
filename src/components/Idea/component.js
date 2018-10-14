@@ -41,12 +41,14 @@ class Idea extends Component {
 
     changeBody = elem => (this.setState({ body: elem.target.value }));
 
+    closeIdea = () => this.props.deleteIdea(this.props.id);
+
     render() {
         const { editingTitle, editingBody, title, body } = this.state;
         return (
             <div className="idea">
                 <div className="topbar">
-                    <div className="close-button">&#215;</div>
+                    <div className="close-button" onClick={this.closeIdea}>&#215;</div>
                 </div>
                 { editingTitle ?
                     <input
@@ -73,7 +75,8 @@ Idea.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
     body: PropTypes.string,
-    new: PropTypes.bool
+    new: PropTypes.bool,
+    deleteIdea: PropTypes.func
 };
 
 export default Idea;

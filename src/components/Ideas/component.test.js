@@ -30,4 +30,11 @@ describe('Ideas', function() {
     wrapper.find('.new').simulate('click');
     expect(wrapper.state('ideas')).toHaveLength(3);
   });
+
+  test('if the remove button is pressed, the number of ideas is decreased by 1', function() {
+    const wrapper = component();
+    expect(wrapper.state('ideas')).toHaveLength(2);
+    wrapper.find('Idea').first().prop('deleteIdea')('1');
+    expect(wrapper.state('ideas')).toHaveLength(1);
+  });
 });
