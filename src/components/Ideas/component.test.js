@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import React from 'react';
 import { shallow } from 'enzyme';
 
@@ -23,21 +26,19 @@ const component = () =>
 
 describe('Ideas', function() {
   test('it should have a list of ideas, the select and the new button', function() {
-    expect(component().find('.ideas').children()).toHaveLength(4);
+    expect(component().find('.ideas').children()).toHaveLength(3);
   });
 
   test('if the new button is pressed, the number of ideas is increased in 1', function() {
     const wrapper = component();
-    expect(wrapper.state('ideas')).toHaveLength(2);
     wrapper.find('.new').simulate('click');
-    expect(wrapper.state('ideas')).toHaveLength(3);
+    expect(wrapper.state('ideas')).toHaveLength(2);
   });
 
   test('if the remove button is pressed, the number of ideas is decreased by 1', function() {
     const wrapper = component();
-    expect(wrapper.state('ideas')).toHaveLength(2);
     wrapper.find('Idea').first().prop('deleteIdea')('1');
-    expect(wrapper.state('ideas')).toHaveLength(1);
+    expect(wrapper.state('ideas')).toHaveLength(0);
   });
 
   test('the list is sorted by title by default', function() {

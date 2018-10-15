@@ -39,12 +39,16 @@ class Idea extends Component {
     }));
 
     updateTitle = () => {
-        update(this.props.id, 'title', this.inputTitle.value);
+        if (this.inputTitle) {
+            update(this.props.id, 'title', this.inputTitle.value);
+        }
         this.setState({ editingTitle: false }, () => this.notificationUpdate())
     }
 
-    updateBody = () => {  
-        update(this.props.id, 'body', this.inputBody.value);
+    updateBody = () => {
+        if (this.inputBody) {
+            update(this.props.id, 'body', this.inputBody.value);
+        }
         this.setState({ editingBody: false }, () => this.notificationUpdate());
     }
 
